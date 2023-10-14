@@ -1,19 +1,22 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '../shared/shared.module';
+import { FrontendProductsComponent } from './frontend-products/frontend-products.component';
 import { MainComponent } from './main.component';
 import { NavComponent } from './nav/nav.component';
+import { SecureModule } from './secure/secure.module';
 
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    NavComponent
+    NavComponent,
+    FrontendProductsComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule
+    SharedModule,
+    SecureModule
   ]
 })
 export class MainModule { }

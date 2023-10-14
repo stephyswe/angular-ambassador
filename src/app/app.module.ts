@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CredentialInterceptor } from './interceptors/credential.interceptor';
 import { MainModule } from './main/main.module';
 import { PublicModule } from './public/public.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PublicModule } from './public/public.module';
     AppRoutingModule,
     HttpClientModule,
     PublicModule,
-    MainModule
+    MainModule,
+    SharedModule
   ],
   providers: [
     {
