@@ -10,7 +10,7 @@ import { User } from '../../interfaces/user';
 export class HeaderComponent implements OnInit {
   title = 'Welcome';
   description = 'Share links to earn money';
-  user!: User;
+  user!: User | null;
 
   constructor() {
   }

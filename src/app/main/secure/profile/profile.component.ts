@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
 
     Emitters.authEmitter.subscribe(
       user => {
-        this.infoForm.patchValue(user)
+        this.infoForm.patchValue(user || {});
       }
     )
   }

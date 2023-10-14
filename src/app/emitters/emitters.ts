@@ -2,15 +2,15 @@ import { EventEmitter } from '@angular/core';
 import { User } from '../interfaces/user';
 
 export class Emitters {
-  static _user = null;
-  static authEmitter = new EventEmitter<User>();
+  static _user: User | null = null; // Initialize as null
+  static authEmitter = new EventEmitter<User | null>();
 
-  static set user(user: any) {
+  static set user(user: User | null) {
     this._user = user;
     this.authEmitter.emit(user);
   }
 
-  static get user(): any {
+  static get user(): User | null {
     return this._user;
   }
 }
