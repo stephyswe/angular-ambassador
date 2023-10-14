@@ -9,6 +9,8 @@
     </p>
 
     <nav class="my-2 my-md-0 me-md-3" *ngIf="user">
+        <a routerLink="/stats" class="p-2 text-dark text-decoration-none" href="#">Stats</a>
+        <a routerLink="/rankings" class="p-2 text-dark text-decoration-none" href="#">Rankings</a>
         <a class="p-2 text-dark text-decoration-none" href="#" (click)="logout()">Logout</a>
     </nav>
 
