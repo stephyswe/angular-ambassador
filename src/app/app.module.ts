@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CredentialInterceptor } from './interceptors/credential.interceptor';
+import { MainModule } from './main/main.module';
 import { PublicModule } from './public/public.module';
 
 @NgModule({
@@ -14,8 +15,9 @@ import { PublicModule } from './public/public.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     PublicModule,
-    HttpClientModule
+    MainModule
   ],
   providers: [
     {
