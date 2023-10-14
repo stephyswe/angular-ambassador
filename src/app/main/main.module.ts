@@ -6,6 +6,7 @@ import { MainComponent } from './main.component';
 import { NavComponent } from './nav/nav.component';
 import { SecureModule } from './secure/secure.module';
 import { HeaderComponent } from './header/header.component';
+import { BackendProductsComponent } from './backend-products/backend-products.component';
 
 
 
@@ -14,7 +15,8 @@ import { HeaderComponent } from './header/header.component';
     MainComponent,
     NavComponent,
     FrontendProductsComponent,
-    HeaderComponent
+    HeaderComponent,
+    BackendProductsComponent
   ],
   imports: [
     SharedModule,
