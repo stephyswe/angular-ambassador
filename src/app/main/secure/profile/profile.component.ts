@@ -26,6 +26,10 @@ export class ProfileComponent implements OnInit {
       email: ''
     });
 
+    if (Emitters.user) {
+      this.infoForm.patchValue(Emitters.user)
+    }
+
     this.passwordForm = this.formBuilder.group({
       password: '',
       password_confirm: ''
@@ -40,10 +44,7 @@ export class ProfileComponent implements OnInit {
 
   infoSubmit(): void {
     this.authService.updateInfo(this.infoForm.getRawValue()).subscribe(
-      user => {
-        Emitters.authEmitter.emit(user)
-      }
-    );
+      user =>Emitters.user = user);
   }
 
   passwordSubmit(): void {

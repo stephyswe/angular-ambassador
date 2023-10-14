@@ -5,6 +5,7 @@ import { FrontendProductsComponent } from './frontend-products/frontend-products
 import { MainComponent } from './main.component';
 import { NavComponent } from './nav/nav.component';
 import { SecureModule } from './secure/secure.module';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -12,7 +13,8 @@ import { SecureModule } from './secure/secure.module';
   declarations: [
     MainComponent,
     NavComponent,
-    FrontendProductsComponent
+    FrontendProductsComponent,
+    HeaderComponent
   ],
   imports: [
     SharedModule,
