@@ -1,4 +1,7 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="col-md-12 mb-4 input-group">
+        <input type="text" class="form-control" placeholder="Search" (keyup)="search($event)">
+    </div>
     <div class="col" *ngFor="let product of products">
         <div class="card shadow-sm">
             <img [src]="product.image" height="200">
@@ -16,4 +19,4 @@
 
 <div class="d-flex justify-content-center mt-4" *ngIf="showButton">
     <button class="btn btn-primary" (click)="loadMore()">Load More</button>
-  </div>
+</div>

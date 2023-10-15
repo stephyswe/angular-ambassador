@@ -30,9 +30,14 @@ export class BackendProductsComponent implements OnInit {
     this.route.queryParams.subscribe(
       queryParams => {
         this.page =  Number(queryParams["page"]) || 1;
-        this.productService.backend({page: this.page}).subscribe(
+        const s = queryParams["s"] || '';
+
+        this.productService.backend({
+          page: this.page,
+          s
+        }).subscribe(
           result => {
-            this.products = [...this.products, ...result.data]
+            this.products = this.page === 1 ? result.data : [...this.products, ...result.data];
             this.showButton = Number(result.meta.last_page) !== this.page
           }
         )
@@ -44,7 +49,17 @@ export class BackendProductsComponent implements OnInit {
      this.page++;
     this.router.navigate([], {
       queryParams: {
-        page: this.page
+        page: this.page,
+      },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  search(s: KeyboardEvent): void {
+    this.router.navigate([], {
+      queryParams: {
+        s: (s.target as HTMLInputElement).value,
+        page: 1
       },
       queryParamsHandling: 'merge'
     });

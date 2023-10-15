@@ -14,12 +14,16 @@ export class ProductService {
 
   constructor( private http: HttpClient) {}
 
-  backend(filters?: {page?: number}): Observable<PaginatedProducts> {
+  backend(filters?: {page?: number,  s?: string}): Observable<PaginatedProducts> {
     let params = new HttpParams()
 
     if (filters?.page) {
       params = params.set('page', filters.page.toString())
     } 
+
+    if (filters?.s) {
+      params = params.set('s', filters.s);
+    }
 
     return this.http.get<PaginatedProducts>(`${this.endpoint}/backend`, {params});
   }
