@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../interfaces/product';
+import { LinkService } from '../../services/link.service';
 import { ProductService } from '../../services/product.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-backend-products',
@@ -13,9 +15,13 @@ export class BackendProductsComponent implements OnInit {
   products: Product[] = []
   page = 1
   showButton = true
+  selected: number[] = [];
+  link = '';
+  error = false;
 
   constructor(
     private productService: ProductService,
+    private linkService: LinkService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -82,5 +88,29 @@ export class BackendProductsComponent implements OnInit {
         queryParamsHandling: 'merge'
       });
     }
+  }
+
+  select(id: number): void {
+    if (!this.isSelected(id)) {
+      this.selected = [...this.selected, id];
+      return;
+    }
+
+    this.selected = this.selected.filter(s => s !== id);
+  }
+
+  isSelected(id: number): boolean {
+    return this.selected.some(s => s === id);
+  }
+
+  generate(): void {
+    this.linkService.generate({
+      products: this.selected
+    }).subscribe(
+      link => {
+        this.link = `${environment.checkout_url}/${link.code}`;
+      },
+      () => this.error = true
+    );
   }
 }

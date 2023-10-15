@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 import { StatsService } from '../../../services/stats.service';
 
 interface Stat {
@@ -27,7 +28,7 @@ export class StatsComponent implements OnInit {
     );
   }
 
-  /* checkoutLink(code: string): string {
+  checkoutLink(code: string): string {
     return `${environment.checkout_url}/${code}`;
-  } */
+  }
 }
