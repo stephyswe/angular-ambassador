@@ -12,6 +12,7 @@ import { ProductService } from '../../services/product.service';
 export class BackendProductsComponent implements OnInit {
   products: Product[] = []
   page = 1
+  showButton = true
 
   constructor(
     private productService: ProductService,
@@ -21,12 +22,18 @@ export class BackendProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.route.snapshot.queryParams["page"] > this.page) {
+      this.page = 0;
+      this.loadMore();
+    }
+
     this.route.queryParams.subscribe(
       queryParams => {
         this.page =  Number(queryParams["page"]) || 1;
         this.productService.backend({page: this.page}).subscribe(
           result => {
             this.products = [...this.products, ...result.data]
+            this.showButton = Number(result.meta.last_page) !== this.page
           }
         )
       }
