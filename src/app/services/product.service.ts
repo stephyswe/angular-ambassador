@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { PaginatedProducts } from '../interfaces/paginated-products';
+import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class ProductService {
     }
 
     return this.http.get<PaginatedProducts>(`${this.endpoint}/backend`, {params});
+  }
+
+  frontend(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.endpoint}/frontend`);
   }
 
 }
