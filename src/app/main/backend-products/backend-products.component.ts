@@ -31,10 +31,13 @@ export class BackendProductsComponent implements OnInit {
       queryParams => {
         this.page =  Number(queryParams["page"]) || 1;
         const s = queryParams["s"] || '';
+        const sort = queryParams["sort"] || '';
+
 
         this.productService.backend({
           page: this.page,
-          s
+          s,
+          sort
         }).subscribe(
           result => {
             this.products = this.page === 1 ? result.data : [...this.products, ...result.data];
@@ -56,12 +59,28 @@ export class BackendProductsComponent implements OnInit {
   }
 
   search(s: KeyboardEvent): void {
-    this.router.navigate([], {
-      queryParams: {
-        s: (s.target as HTMLInputElement).value,
-        page: 1
-      },
-      queryParamsHandling: 'merge'
-    });
+    if (s.target) {
+      const search =  (s.target as HTMLInputElement).value
+      this.router.navigate([], {
+        queryParams: {
+          s: search,
+          page: 1
+        },
+        queryParamsHandling: 'merge'
+      });
+    }
+  }
+
+  sort(event: Event): void {
+    if (event.target) {
+      const sort = (event.target as HTMLSelectElement).value;
+      this.router.navigate([], {
+        queryParams: {
+          sort,
+          page: 1
+        },
+        queryParamsHandling: 'merge'
+      });
+    }
   }
 }

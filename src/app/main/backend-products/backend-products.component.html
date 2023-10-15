@@ -1,6 +1,14 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     <div class="col-md-12 mb-4 input-group">
         <input type="text" class="form-control" placeholder="Search" (keyup)="search($event)">
+        <div class="input-group-append">
+            <select class="form-select" (change)="sort($event)">
+              <option>Select</option>
+              <option value="asc">Price Ascending</option>
+              <option value="desc">Price Descending</option>
+            </select>
+          </div>
+
     </div>
     <div class="col" *ngFor="let product of products">
         <div class="card shadow-sm">
