@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,8 +14,14 @@ export class ProductService {
 
   constructor( private http: HttpClient) {}
 
-  backend(): Observable<{data: Product[]}> {
-    return this.http.get<{data: Product[]}>(`${this.endpoint}/backend`);
+  backend(filters?: {page?: number}): Observable<{data: Product[]}> {
+    let params = new HttpParams()
+
+    if (filters?.page) {
+      params = params.set('page', filters.page.toString())
+    } 
+
+    return this.http.get<{data: Product[]}>(`${this.endpoint}/backend`, {params});
   }
 
 }
